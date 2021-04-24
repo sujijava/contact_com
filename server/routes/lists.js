@@ -1,12 +1,18 @@
 import express from 'express'
 
-import { getLists, getList, addList, deleteList } from '../controllers/lists.js'
+import {
+  getContacts,
+  getContact,
+  addContact,
+  deleteContact,
+  editContact,
+} from '../controllers/contacts.js'
 
 const router = express.Router()
 
-router.get('/', getLists)
-router.get('/:id', getList)
-router.post('/', addList)
-router.delete('/:id', deleteList)
-
+router.get('/', getContacts)
+router.get('/:id', getContact)
+router.post('/', addContact)
+router.delete('/:id', deleteContact)
+router.post('/edit/:id', editContact)
 export default router

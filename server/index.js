@@ -13,7 +13,7 @@ app.use(bodyParser.json({}))
 app.use(bodyParser.urlencoded({}))
 app.use(cors())
 
-app.use('/lists', listRoutes)
+app.use('/contacts', listRoutes)
 
 //Serve static assets if in production
 // if (process.env.NODE_ENV === 'production') {
@@ -31,7 +31,7 @@ app.get('*', (req, res) => {
 
 const CONNECTION_URL =
   process.env.MONGODB_URI ||
-  'mongodb+srv://admin:admin123123@cluster0.cgyal.mongodb.net/mernPRJ?retryWrites=true&w=majority'
+  'mongodb+srv://dbUser:admin123123@cluster0.g3lyb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 const PORT = process.env.PORT || 5000
 
