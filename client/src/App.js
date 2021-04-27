@@ -2,13 +2,17 @@ import './App.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import EditForm from './components/EditForm'
 import CreateContactPage from './page/CreateContactPage'
+import Header from './components/Header'
 
 function App() {
   return (
-    <Router>
-      <Route path='/' exact component={CreateContactPage}></Route>
-      <Route path='/edit/:_id' component={EditForm}></Route>
-    </Router>
+    <div>
+      <Header></Header>
+      <Router>
+        <Route path='/' exact component={CreateContactPage}></Route>
+        <Route path='/edit/:_id' component={EditForm}></Route>
+      </Router>
+    </div>
   )
 }
 

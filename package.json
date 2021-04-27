@@ -1,0 +1,21 @@
+{
+  "name": "phone_book",
+  "version": "1.0.0",
+  "description": "contact manage app",
+  "main": "server/index",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sujijava/inkblot-assess.git"
+  },
+  "author": "Susie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sujijava/inkblot-assess/issues"
+  },
+  "homepage": "https://github.com/sujijava/inkblot-assess#readme"
+}

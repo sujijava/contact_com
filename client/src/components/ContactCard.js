@@ -1,5 +1,4 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
@@ -26,11 +25,15 @@ export default function ContactCard(props) {
         <h5 className='card-title'># {props.group}</h5>
         <p className='card-text'>{props.email}</p>
         <div>
-          <button style={{ marginRight: '1%' }} className='btn btn-danger'>
-            delete
+          <button
+            className='btn btn-danger'
+            style={{ marginRight: '1%' }}
+            onClick={() => props.deleteContact(props._id)}
+          >
+            Delete
           </button>
           <button className='btn btn-primary' onClick={() => editContact()}>
-            edit
+            Edit
           </button>
         </div>
       </div>
