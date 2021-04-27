@@ -97,7 +97,7 @@ export default function CreatForm() {
               }}
             >
               <option selected>Group: Company Name</option>
-              <option value='Inkblot'>Inkblot</option>
+              <option value='Oakville Town Hall'>Oakville Town Hall</option>
               <option value='Sheridan College'>Sheridan College</option>
             </select>
           </div>
