@@ -1,6 +1,5 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 
 export default function ContactCard(props) {
   let history = useHistory()
@@ -13,16 +12,29 @@ export default function ContactCard(props) {
     <div
       className='card'
       style={{
-        minWidth: '15rem',
+        width: '14rem',
         height: '20rem',
         margin: '0.1rem 0.1rem 2rem 0.1rem',
       }}
     >
-      <img className='card-img-top' src={props.image} alt='Card image cap' />
+      <div
+        className='container'
+        style={{ display: 'flex', justifyContent: 'center' }}
+      >
+        <img
+          style={{ width: '100px', marginTop: '10px', marginBottom: '-10' }}
+          className='card-img-top'
+          src={props.image}
+          alt='Card image cap'
+        />
+      </div>
       <div className='card-body'>
-        <h3 className='card-title'>{props.firstName}</h3>
-        <h3 className='card-title'>{props.lastName}</h3>
-        <h5 className='card-title'># {props.group}</h5>
+        <h5 className='card-title'>
+          {props.firstName} {props.lastName}
+        </h5>
+        <p className='card-title' style={{ fontWeight: 'bold' }}>
+          # {props.group}
+        </p>
         <p className='card-text'>{props.email}</p>
         <div>
           <button

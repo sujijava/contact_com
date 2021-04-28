@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ContactCard from './ContactCard'
-import { Button, Form, Row, Col } from 'react-bootstrap'
 
 export default function ContactListContainer() {
   const [contacts, setContacts] = useState([])
   const [contactsForSortFilter, setContactsForSortFilter] = useState([])
 
-  const [sortType, setSortType] = useState('date')
-  const [filterType, setFilterType] = useState('all')
+  const [sortFilterType, setSortFilterType] = useState({
+    sort: 'date',
+    filter: 'all',
+  })
 
   useEffect(() => {
     axios.get('http://localhost:5000/contacts').then((response) => {
@@ -46,29 +47,93 @@ export default function ContactListContainer() {
   }
 
   useEffect(() => {
-    console.log('filter type changed')
-    let oakvilleGroup = contactsForSortFilter.filter((contact) => {
+    let oakvilleGroup = contacts.filter((contact) => {
       return contact.group == 'Oakville Town Hall'
-      // console.log(contact.group)
     })
-    console.log(oakvilleGroup)
 
-    // console.log(contacts[3].group)
-    let sheridanGroup = contactsForSortFilter.filter((contact) => {
+    let sheridanGroup = contacts.filter((contact) => {
       return contact.group == 'Sheridan College'
     })
+    console.log(sheridanGroup)
 
-    console.log(filterType)
-
-    switch (filterType) {
-      case 'oakville':
-        setContactsForSortFilter(oakvilleGroup)
-        break
-      case 'sheridan':
-        setContactsForSortFilter(sheridanGroup)
-        break
+    if (sortFilterType.filter === 'all') {
+      switch (sortFilterType.sort) {
+        case 'date':
+          setContactsForSortFilter(contacts)
+          break
+        case 'first_name':
+          setContactsForSortFilter(
+            contacts.sort((a, b) => {
+              let textA = a.firstName.toUpperCase()
+              let textB = b.firstName.toUpperCase()
+              return textA < textB ? -1 : textA > textB ? 1 : 0
+            })
+          )
+          break
+        case 'last_name':
+          setContactsForSortFilter(
+            contacts.sort((a, b) => {
+              let textA = a.lastName.toUpperCase()
+              let textB = b.lastName.toUpperCase()
+              return textA < textB ? -1 : textA > textB ? 1 : 0
+            })
+          )
+          break
+      }
     }
-  }, [filterType])
+
+    if (sortFilterType.filter === 'oakville') {
+      switch (sortFilterType.sort) {
+        case 'date':
+          setContactsForSortFilter(oakvilleGroup)
+          break
+        case 'first_name':
+          setContactsForSortFilter(
+            oakvilleGroup.sort((a, b) => {
+              let textA = a.firstName.toUpperCase()
+              let textB = b.firstName.toUpperCase()
+              return textA < textB ? -1 : textA > textB ? 1 : 0
+            })
+          )
+          break
+        case 'last_name':
+          setContactsForSortFilter(
+            oakvilleGroup.sort((a, b) => {
+              let textA = a.lastName.toUpperCase()
+              let textB = b.lastName.toUpperCase()
+              return textA < textB ? -1 : textA > textB ? 1 : 0
+            })
+          )
+          break
+      }
+    }
+
+    if (sortFilterType.filter === 'sheridan') {
+      switch (sortFilterType.sort) {
+        case 'date':
+          setContactsForSortFilter(sheridanGroup)
+          break
+        case 'first_name':
+          setContactsForSortFilter(
+            sheridanGroup.sort((a, b) => {
+              let textA = a.firstName.toUpperCase()
+              let textB = b.firstName.toUpperCase()
+              return textA < textB ? -1 : textA > textB ? 1 : 0
+            })
+          )
+          break
+        case 'last_name':
+          setContactsForSortFilter(
+            sheridanGroup.sort((a, b) => {
+              let textA = a.lastName.toUpperCase()
+              let textB = b.lastName.toUpperCase()
+              return textA < textB ? -1 : textA > textB ? 1 : 0
+            })
+          )
+          break
+      }
+    }
+  }, [sortFilterType])
 
   const renderingFromAPI = contacts.map((contact) => {
     return (
@@ -79,6 +144,7 @@ export default function ContactListContainer() {
         lastName={contact.lastName}
         group={contact.group}
         email={contact.email}
+        image={contact.image}
         deleteContact={deleteContact}
       ></ContactCard>
     )
@@ -94,6 +160,7 @@ export default function ContactListContainer() {
           lastName={contact.lastName}
           group={contact.group}
           email={contact.email}
+          image={contact.image}
           deleteContact={deleteContact}
         ></ContactCard>
       )
@@ -101,27 +168,17 @@ export default function ContactListContainer() {
   )
 
   return (
-    <div className='container'>
-      {/* <div className='row justify-content-end'>
-        <Button
-          variant='light'
-          onClick={firstNameSortHandler}
-          style={{ marginRight: '0.5rem' }}
-        >
-          Sort by: First name
-        </Button>
-        <Button variant='light' onClick={lastNameSortHandler}>
-          Sort by: Last name
-        </Button>
-      </div> */}
-
+    <div className='container' style={{ marginTop: '-5%' }}>
       <div className='form-group row' style={{ marginTop: '1%' }}>
         <label>Sorted by:</label>
         <select
           className='form-select form-control'
           aria-label='Default select example'
           onChange={(e) => {
-            setSortType(e.target.value)
+            setSortFilterType((prevState) => ({
+              ...prevState,
+              sort: e.target.value,
+            }))
           }}
         >
           <option value='date' selected>
@@ -138,7 +195,10 @@ export default function ContactListContainer() {
             className='form-select form-control'
             aria-label='Default select example'
             onChange={(e) => {
-              setFilterType(e.target.value)
+              setSortFilterType((prevState) => ({
+                ...prevState,
+                filter: e.target.value,
+              }))
             }}
           >
             <option value='all' selected>

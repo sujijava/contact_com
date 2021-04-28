@@ -4,6 +4,8 @@ import EditForm from './components/EditForm'
 import CreateContactPage from './page/CreateContactPage'
 import Header from './components/Header'
 
+import Signup from './components/Signup'
+
 function App() {
   return (
     <div>
@@ -11,6 +13,7 @@ function App() {
       <Router>
         <Route path='/' exact component={CreateContactPage}></Route>
         <Route path='/edit/:_id' component={EditForm}></Route>
+        <Route path='/signup' component={Signup}></Route>
       </Router>
     </div>
   )

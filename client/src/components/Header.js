@@ -6,7 +6,7 @@ export default function Header() {
     <Navbar bg='dark' variant='dark'>
       <Navbar.Brand href='/'>
         <span>
-          <h3>Phone Book</h3>by susie
+          <h3>Contact.com</h3>by susie
         </span>
       </Navbar.Brand>
       <Nav className='ml-auto'>
