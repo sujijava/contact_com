@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useAuth } from '../contexts/AuthContext'
 
 export default function CreatForm() {
   const [firstName, setFirstName] = useState('')
@@ -8,13 +9,10 @@ export default function CreatForm() {
   const [image, setImage] = useState('')
   const [group, setGroup] = useState('')
 
+  const { currentUser } = useAuth()
+
   const creatUserSubmitHandler = (e) => {
     e.preventDefault()
-    // console.log(firstName)
-    // console.log(lastName)
-    // console.log(email)
-    // console.log(image)
-    // console.log(group)
 
     const user = {
       firstName: firstName,
@@ -22,6 +20,7 @@ export default function CreatForm() {
       email: email,
       image: image,
       group: group,
+      userId: currentUser.uid,
     }
 
     console.log(user)

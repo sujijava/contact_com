@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useAuth } from '../contexts/AuthContext'
 
 export default function EditForm(props) {
   const [firstName, setFirstName] = useState('')
@@ -7,6 +8,8 @@ export default function EditForm(props) {
   const [email, setEmail] = useState('')
   const [image, setImage] = useState('')
   const [group, setGroup] = useState('')
+
+  const { currentUser } = useAuth()
 
   const editUserSubmitHandler = (e) => {
     e.preventDefault()
@@ -17,6 +20,7 @@ export default function EditForm(props) {
       email: email,
       image: image,
       group: group,
+      userId: currentUser.uid,
     }
 
     console.log(user)

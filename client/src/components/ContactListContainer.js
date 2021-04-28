@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ContactCard from './ContactCard'
+import { useAuth } from '../contexts/AuthContext'
 
 export default function ContactListContainer() {
   const [contacts, setContacts] = useState([])
   const [contactsForSortFilter, setContactsForSortFilter] = useState([])
 
+  const { currentUser } = useAuth()
   const [sortFilterType, setSortFilterType] = useState({
     sort: 'date',
     filter: 'all',
   })
 
   useEffect(() => {
-    axios.get('http://localhost:5000/contacts').then((response) => {
-      setContacts(response.data)
-    })
+    axios
+      .get(`http://localhost:5000/contacts/user/${currentUser.uid}`)
+      .then((response) => {
+        setContacts(response.data)
+      })
   }, [contacts])
 
   const deleteContact = (id) => {
@@ -22,28 +26,8 @@ export default function ContactListContainer() {
       console.log(response.data)
     })
 
-    console.log(contacts)
     let tempContact = contacts.filter((el) => el._id !== id)
     setContacts(tempContact)
-    console.log(contacts)
-  }
-
-  const firstNameSortHandler = (e) => {
-    e.preventDefault()
-    setContactsForSortFilter(contacts)
-
-    // console.log(contacts)
-    let tempContacts = [...contacts]
-    let ascSortedContacts = tempContacts.sort((a, b) => {
-      let textA = a.firstName.toUpperCase()
-      let textB = b.firstName.toUpperCase()
-      return textA < textB ? -1 : textA > textB ? 1 : 0
-    })
-
-    console.log(ascSortedContacts)
-    setContactsForSortFilter(ascSortedContacts)
-
-    // console.log(contactsForSortFilter)
   }
 
   useEffect(() => {

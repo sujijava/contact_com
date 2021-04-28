@@ -6,7 +6,7 @@ const contactSchema = mongoose.Schema({
   email: String,
   image: String,
   group: String,
-  // userEmail: String,
+  userId: { type: String, required: true },
 })
 
 var ContactMessage = mongoose.model('ContactMessage', contactSchema)

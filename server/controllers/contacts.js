@@ -12,6 +12,14 @@ export const getContacts = async (req, res) => {
 }
 
 //method: get
+//get contacts by user
+export const getContactsByUser = async (req, res) => {
+  ContactMessage.find({ userId: req.params.id })
+    .then((lists) => res.json(lists))
+    .catch((err) => res.status(400).json('Error: ' + err))
+}
+
+//method: get
 //get a contact
 export const getContact = async (req, res) => {
   ContactMessage.findById(req.params.id)
@@ -19,14 +27,21 @@ export const getContact = async (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err))
 }
 
+export const getContactByUser = async (req, res) => {
+  ContactMessage.findById(req.params.id)
+    .then((list) => res.json(list))
+    .catch((err) => res.status(400).json('Error: ' + err))
+}
+
 //method:post
-//add a list
+//add a contact
 export const addContact = async (req, res) => {
   const firstName = req.body.firstName
   const lastName = req.body.lastName
   const email = req.body.email
   const image = req.body.image
   const group = req.body.group
+  const userId = req.body.userId
 
   const newContactMessage = new ContactMessage({
     firstName,
@@ -34,6 +49,7 @@ export const addContact = async (req, res) => {
     email,
     image,
     group,
+    userId,
   })
 
   newContactMessage
@@ -43,9 +59,7 @@ export const addContact = async (req, res) => {
 }
 
 //method: delete
-//a list
-//delete a list
-
+//a contact
 export const deleteContact = async (req, res) => {
   ContactMessage.findByIdAndDelete(req.params.id)
     .then(() => res.json('A list deleted.'))
@@ -60,6 +74,7 @@ export const editContact = async (req, res) => {
       contact.email = req.body.email
       contact.image = req.body.image
       contact.group = req.body.group
+      contact.userId = req.body.userId
 
       contact
         .save()
