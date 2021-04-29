@@ -25,9 +25,7 @@ export default function CreatForm() {
 
     console.log(user)
 
-    axios
-      .post('http://localhost:5000/contacts', user)
-      .then((res) => console.log(res.data))
+    axios.post('/contacts', user).then((res) => console.log(res.data))
 
     window.location.reload()
   }

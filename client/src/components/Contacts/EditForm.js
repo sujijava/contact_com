@@ -26,28 +26,23 @@ export default function EditForm(props) {
     console.log(user)
 
     axios
-      .post(
-        'http://localhost:5000/contacts/edit/' + props.match.params._id,
-        user
-      )
+      .post('/contacts/edit/' + props.match.params._id, user)
       .then((res) => console.log(res.data))
 
     window.location = '/'
   }
 
   useEffect(() => {
-    axios
-      .get('http://localhost:5000/contacts/' + props.match.params._id)
-      .then((response) => {
-        // setUser({firstName: response.data.firstName})
-        console.log(response.data)
-        const user = response.data
-        setFirstName(user.firstName)
-        setLastName(user.lastName)
-        setEmail(user.email)
-        setImage(user.image)
-        setGroup(user.group)
-      })
+    axios.get('/contacts/' + props.match.params._id).then((response) => {
+      // setUser({firstName: response.data.firstName})
+      console.log(response.data)
+      const user = response.data
+      setFirstName(user.firstName)
+      setLastName(user.lastName)
+      setEmail(user.email)
+      setImage(user.image)
+      setGroup(user.group)
+    })
   }, [])
 
   console.log(props.match.params._id)

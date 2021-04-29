@@ -16,7 +16,7 @@ export default function ContactListContainer() {
   //get contacts list at initial render
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/contacts/user/${currentUser.uid}`)
+      .get(`/contacts/user/${currentUser.uid}`)
       .then((response) => {
         setContacts(response.data)
       })
@@ -24,7 +24,7 @@ export default function ContactListContainer() {
 
   //delete contact
   const deleteContact = (id) => {
-    axios.delete('http://localhost:5000/contacts/' + id).then((response) => {
+    axios.delete('/contacts/' + id).then((response) => {
       console.log(response.data)
     })
 
