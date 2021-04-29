@@ -1,13 +1,13 @@
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import EditForm from './components/EditForm'
-import CreateContactPage from './page/CreateContactPage'
+import EditForm from './components/Contacts/EditForm'
+import CreateContactPage from './components/Contacts/CreateContactPage'
 import Header from './components/Header'
 
-import Signup from './components/Signup'
+import Signup from './components/User/Signup'
 import { AuthProvider } from './contexts/AuthContext.js'
-import Login from './components/Login'
-import Logout from './components/Logout'
+import Login from './components/User/Login'
+import Logout from './components/User/Logout'
 import PrivateRoute from './components/PrivateRoute'
 
 function App() {

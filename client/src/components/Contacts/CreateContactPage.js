@@ -1,6 +1,6 @@
 import React from 'react'
-import CreateForm from '../components/CreateForm'
-import ContactListContainer from '../components/ContactListContainer'
+import CreateForm from './CreateForm'
+import ContactListContainer from './ContactListContainer'
 import { Container, Row, Col } from 'react-bootstrap'
 
 export default function CreateContactPage() {
