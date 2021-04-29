@@ -95,7 +95,7 @@ export default function CreatForm() {
                 setGroup(e.target.value)
               }}
             >
-              <option selected>Group: Company Name</option>
+              <option defaultValue>Group: Company Name</option>
               <option value='Oakville Town Hall'>Oakville Town Hall</option>
               <option value='Sheridan College'>Sheridan College</option>
             </select>

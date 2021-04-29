@@ -118,7 +118,7 @@ export default function EditForm(props) {
                       setGroup(e.target.value)
                     }}
                   >
-                    <option selected>Group: Company Name</option>
+                    <option defaultValue>Group: Company Name</option>
                     <option value='Oakville Town Hall'>
                       Oakville Town Hall
                     </option>

@@ -5,11 +5,10 @@ import { useHistory } from 'react-router-dom'
 export default function Logout() {
   const history = useHistory()
   const { logout } = useAuth()
-  const [error, setError] = useState('')
 
   useEffect(() => {
     logout()
     history.push('/')
   }, [])
-  return <div>logout</div>
+  return <div></div>
 }

@@ -12,7 +12,7 @@ export default function ContactCard(props) {
     <div
       className='card'
       style={{
-        width: '14rem',
+        width: '13rem',
         height: '20rem',
         margin: '0.1rem 0.1rem 2rem 0.1rem',
       }}
@@ -24,7 +24,7 @@ export default function ContactCard(props) {
         <img
           style={{ width: '100px', marginTop: '10px', marginBottom: '-10' }}
           className='card-img-top'
-          src={props.image}
+          src={props.image ? props.image : './assets/userProfile.png'}
           alt='Card image cap'
         />
       </div>
@@ -35,7 +35,9 @@ export default function ContactCard(props) {
         <p className='card-title' style={{ fontWeight: 'bold' }}>
           # {props.group}
         </p>
-        <p className='card-text'>{props.email}</p>
+        <p style={{ fontSize: 'small' }} className='card-text'>
+          {props.email}
+        </p>
         <div>
           <button
             className='btn btn-danger'

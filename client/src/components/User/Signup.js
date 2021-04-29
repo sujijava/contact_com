@@ -9,7 +9,6 @@ export default function Signup() {
   const passwordConfirmRef = useRef()
   const { signup } = useAuth()
   const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
   const history = useHistory()
 
   async function handleSubmit(e) {
@@ -21,14 +20,11 @@ export default function Signup() {
 
     try {
       setError('')
-      setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
       history.push('/')
     } catch {
       setError('Failed to create an account')
     }
-
-    setLoading(false)
   }
 
   return (
@@ -50,7 +46,7 @@ export default function Signup() {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type='password' ref={passwordConfirmRef} required />
             </Form.Group>
-            <Button disabled={loading} className='w-100' type='submit'>
+            <Button className='w-100' type='submit'>
               Sign Up
             </Button>
           </Form>

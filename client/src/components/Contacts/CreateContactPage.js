@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 export default function CreateContactPage() {
   return (
-    <Container maxWidth='lg' style={{ marginTop: '5%' }}>
+    <Container style={{ marginTop: '5%' }}>
       <Row>
         <Col sm={8}>
           <ContactListContainer />

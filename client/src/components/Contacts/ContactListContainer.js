@@ -6,13 +6,14 @@ import { useAuth } from '../../contexts/AuthContext'
 export default function ContactListContainer() {
   const [contacts, setContacts] = useState([])
   const [contactsForSortFilter, setContactsForSortFilter] = useState([])
-
-  const { currentUser } = useAuth()
   const [sortFilterType, setSortFilterType] = useState({
     sort: 'date',
     filter: 'all',
   })
 
+  const { currentUser } = useAuth()
+
+  //get contacts list at initial render
   useEffect(() => {
     axios
       .get(`http://localhost:5000/contacts/user/${currentUser.uid}`)
@@ -21,6 +22,7 @@ export default function ContactListContainer() {
       })
   }, [contacts])
 
+  //delete contact
   const deleteContact = (id) => {
     axios.delete('http://localhost:5000/contacts/' + id).then((response) => {
       console.log(response.data)
@@ -30,6 +32,7 @@ export default function ContactListContainer() {
     setContacts(tempContact)
   }
 
+  //sort and filter upon state 'sortFilterType' changes
   useEffect(() => {
     let oakvilleGroup = contacts.filter((contact) => {
       return contact.group == 'Oakville Town Hall'
@@ -38,7 +41,6 @@ export default function ContactListContainer() {
     let sheridanGroup = contacts.filter((contact) => {
       return contact.group == 'Sheridan College'
     })
-    console.log(sheridanGroup)
 
     if (sortFilterType.filter === 'all') {
       switch (sortFilterType.sort) {
@@ -119,6 +121,7 @@ export default function ContactListContainer() {
     }
   }, [sortFilterType])
 
+  //rendering from API: for initial render
   const renderingFromAPI = contacts.map((contact) => {
     return (
       <ContactCard
@@ -134,6 +137,7 @@ export default function ContactListContainer() {
     )
   })
 
+  //rendering from sorting and filters: for renders upon sort and filter
   const renderingFromSortingAndFilters = contactsForSortFilter.map(
     (contact) => {
       return (
@@ -152,7 +156,7 @@ export default function ContactListContainer() {
   )
 
   return (
-    <div className='container' style={{ marginTop: '-5%' }}>
+    <div className='container'>
       <div className='form-group row' style={{ marginTop: '1%' }}>
         <label>Sorted by:</label>
         <select
@@ -165,7 +169,7 @@ export default function ContactListContainer() {
             }))
           }}
         >
-          <option value='date' selected>
+          <option value='date' defaultValue>
             Added Date: Latest-Oldest
           </option>
           <option value='first_name'>First Name: A-Z</option>
@@ -177,7 +181,6 @@ export default function ContactListContainer() {
           <label>Filter:</label>
           <select
             className='form-select form-control'
-            aria-label='Default select example'
             onChange={(e) => {
               setSortFilterType((prevState) => ({
                 ...prevState,
@@ -185,7 +188,7 @@ export default function ContactListContainer() {
               }))
             }}
           >
-            <option value='all' selected>
+            <option value='all' defaultValue>
               Group by Company: All
             </option>
             <option value='oakville'>
@@ -195,7 +198,7 @@ export default function ContactListContainer() {
           </select>
         </div>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div className='row' style={{ display: 'flex', flexWrap: 'wrap' }}>
         {contactsForSortFilter.length == 0
           ? renderingFromAPI
           : renderingFromSortingAndFilters}

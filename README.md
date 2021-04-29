@@ -1,10 +1,15 @@
-#Title: Phone Book
+# Title: Contact.Com
 
-#Description: A web application enables users to manage contact list
+# Description: A web application enables users to manage contact list
 
-#Developed features including:
+# Developed features including:
 
 1. Auth
-2. CRUD MERN
+2. CRUD with MERN
 
-#Technology: #ReactJS #JavaScript #ES6 #NodeJS #ExpressJS #MongoDB #Axios #LifeCycleHooks #LifeCycleMethod #API #RESTfulAPI
+# Technology: ReactJS | JavaScript | NodeJS | ExpressJS | MongoDB | Axios | LifeCycleHooks | RESTfulAPI | Bootstrap
+
+# Default Credentials
+
+ID: admin123@gmail.com
+PW: 123123
