@@ -8,12 +8,14 @@ A web application enables users to manage contact list
 
 # Developed features including:
 
-1. Auth
-2. CRUD with MERN
+1. Auth with Firebase
+2. CRUD of contacts with MERN
+3. Sort contacts with React
+4. Grouping contacts with React
 
 # Technology:
 
-ReactJS | JavaScript | NodeJS | ExpressJS | MongoDB | Axios | LifeCycleHooks | RESTfulAPI | Bootstrap
+ReactJS | NodeJS | ExpressJS | MongoDB | Axios | React Hooks | REST API | Bootstrap
 
 # Default Credentials
 
