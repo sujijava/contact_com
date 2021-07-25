@@ -35,11 +35,11 @@ export default function Signup() {
           {error && <Alert variant='danger'>{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id='email'>
-              <Form.Label>Email</Form.Label>
+              <Form.Label>Email (Email: admin123@gmail.com) </Form.Label>
               <Form.Control type='email' ref={emailRef} required />
             </Form.Group>
             <Form.Group id='password'>
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Password (PW: 123123) </Form.Label>
               <Form.Control type='password' ref={passwordRef} required />
             </Form.Group>
             <Form.Group id='password-confirm'>
